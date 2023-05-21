@@ -28,6 +28,10 @@
       <label for="color">COLOR:</label>
       <input type="text" name="color" id="color" th:value="${product.color}"/>
     </p>
+    <p>
+      <label for="file">SELECT FILE:</label>
+      <input type="file" name="color" id="file" th:value="@{'data:image/jpeg;base64,'+${product.image}}"/>
+    </p>
 
     <!--        <input type="file" name="file1"/><br><br>-->
     <!--        <input type="file" name="file2"/><br><br>-->

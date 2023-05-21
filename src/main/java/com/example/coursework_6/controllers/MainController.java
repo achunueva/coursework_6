@@ -6,6 +6,7 @@ import com.example.coursework_6.models.Product;
 import com.example.coursework_6.repositories.CommentRepository;
 import com.example.coursework_6.repositories.ProductRepository;
 import com.example.coursework_6.services.ProductService;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.thymeleaf.processor.comment.ICommentStructureHandler;
 
+import java.beans.Transient;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,19 +33,35 @@ public class MainController {
     private ProductService productService;
 
     @GetMapping("/")
-    public String main(){
+    @Transactional
+    public String main(Model model){
+        List<Product> mostViewedProducts = productRepository.findMostViewedProducts();
+        model.addAttribute("mostViewedProducts", mostViewedProducts);
         return "main";
     }
     @GetMapping("/admin")
     public String admin(Model model){
+
         return "admin";
     }
-    @GetMapping("/search")
-    public String search(@RequestParam("query") String query, Model model) {
-        List<Product> results = productRepository.searchProducts(query);
-        model.addAttribute("results", results);
-        return "search";
+
+    @GetMapping("/order")
+    public String order(Model model){
+
+        return "order";
     }
+    @GetMapping("/search")
+    @Transactional
+    public String search(@RequestParam("query") String query, Model model) {
+        List<Product> mostViewedProducts = productRepository.findMostViewedProducts();
+        model.addAttribute("mostViewedProducts", mostViewedProducts);
+        List<Product> product = productRepository.searchProducts(query);
+        model.addAttribute("product", product);
+        return "catalog";
+    }
+
+
+
 
     @PostMapping("/admin")
     public String addFood(@RequestParam String name,
@@ -64,9 +82,9 @@ public class MainController {
 
     @GetMapping("/catalog/admin/{id}")
     public String foodDetails(@PathVariable(value = "id") Long id, Model model){
-        Optional<Product> food = productRepository.findById(id);
+        Optional<Product> product = productRepository.findById(id);
         ArrayList<Product> res = new ArrayList<>();
-        food.ifPresent(res::add);
+        product.ifPresent(res::add);
         model.addAttribute("product", res);
         return "product_admin";
     }

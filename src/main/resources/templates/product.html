@@ -37,7 +37,7 @@
         <p th:text="${product.color}"></p>
         <a href="/templates/cart.html">Add to favorites</a>
         <button (click)="addToCart(product.id)">Add to Cart</button>
-        <a>Buy now</a>
+        <a href="/order">Buy now</a>
     </section>
     <div class="information">
         <h2 th:text="${product.description}"></h2>

@@ -22,6 +22,7 @@ header {
     background-color: #ffffff;
   }
   .logo h1 {
+    text-decoration: none;
     margin-left: 80px;
     color: rgba(76, 130, 81, 1);
     font-size: 20px;;
@@ -78,7 +79,7 @@ header {
     color: white;
   }
   .cards {
-    margin-top: 30px;
+    margin-top: 10px;
     display: grid;
     grid-template-columns: repeat(auto-fill, 225px);
     width: 100%;
@@ -132,6 +133,7 @@ header {
 
 
   .cards a{
+    font-family: Poppins;
     display: block;
     width: 91%;
     font-weight: 400;
@@ -162,4 +164,8 @@ header {
 
 
   }
+  .line {
+    border-bottom: 2px solid rgba(76, 130, 81, 1);
+  }
+
 

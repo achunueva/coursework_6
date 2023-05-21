@@ -18,6 +18,9 @@ public class Product {
     private String description;
     private String color;
     private int price;
+    @Column
+    private Integer viewCount;
+
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE)
     private List<Comment> comments;
@@ -82,5 +85,17 @@ public class Product {
         this.description = description;
         this.color = color;
         this.price = price;
+    }
+
+    public Product(Integer viewCount) {
+        this.viewCount = viewCount;
+    }
+
+    public Integer getViewCount() {
+        return viewCount;
+    }
+
+    public void setViewCount(Integer viewCount) {
+        this.viewCount = viewCount;
     }
 }

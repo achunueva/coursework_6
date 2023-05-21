@@ -13,11 +13,12 @@ header {
     background-color: #ffffff;
   }
   .logo h1 {
-    margin-left: 80px;
-    color: rgba(76, 130, 81, 1);
-    font-size: 20px;;
-    font-weight: 500;
-  }
+      text-decoration: none;
+      margin-left: 80px;
+      color: rgba(76, 130, 81, 1);
+      font-size: 20px;;
+      font-weight: 500;
+    }
 
   .search form {
     display: flex;

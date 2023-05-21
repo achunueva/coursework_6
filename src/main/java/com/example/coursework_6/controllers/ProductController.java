@@ -6,6 +6,7 @@ import com.example.coursework_6.models.Product;
 import com.example.coursework_6.repositories.CommentRepository;
 import com.example.coursework_6.repositories.ProductRepository;
 import com.example.coursework_6.services.ProductService;
+import jakarta.transaction.Transactional;
 import org.springframework.aot.generate.GeneratedTypeReference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,7 +31,10 @@ public class ProductController {
 
 
     @GetMapping("/catalog")
+    @Transactional
     public String catalog(Model model) {
+        List<Product> mostViewedProducts = productRepository.findMostViewedProducts();
+        model.addAttribute("mostViewedProducts", mostViewedProducts);
         List<Product> product = productRepository.findAll();
         model.addAttribute("product", product);
         return "catalog";
@@ -39,6 +43,13 @@ public class ProductController {
     @GetMapping("/catalog/{id}")
     public String getProductPage(@PathVariable("id") Long id, Model model) {
         Optional<Product> product = productRepository.findById(id);
+
+        Product producten = productRepository.findById(id).orElse(null);
+        if (producten != null) {
+            producten.setViewCount(producten.getViewCount() + 1);
+            productRepository.save(producten);
+        }
+
         if (product.isPresent()) {
             Product product1 = product.get();
             List<Comment> comment = commentRepository.findByProductId(id);

@@ -3,21 +3,23 @@
 <head>
     <title>Ethno.kg</title>
     <link rel="stylesheet" type="text/css" href="/css/catalog.css">
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/css/home.css">
 </head>
 <body>
 <header>
     <div class="logo">
-        <a href="/templates/home.html"><h1>ETHNO.KG</h1></a>
+        <a href="/"><h1>ETHNO.KG</h1></a>
     </div>
     <div class="search">
-        <form>
-            <input type="text" placeholder="Search products">
-            <button type="submit">search</button>
+        <form method="get" action="/search">
+            <input type="text" name="query" placeholder="Search products">
+            <button  type="submit">search</button>
         </form>
     </div>
     <div class="icons">
-        <img src="/img/box.png" alt="Иконка 1">
-        <img src="/img/cart.png" alt="Иконка 2">
+        <a href="/order"><img src="/img/box.png" alt="Иконка 1"></a>
+        <a href="/cart"><img src="/img/cart.png" alt="Иконка 2"></a>
         <img src="/img/user.png" alt="Иконка 3">
     </div>
 </header>
@@ -40,6 +42,19 @@
             </div>
         </div>
     </div>
+    <div class="line"></div>
+    <div class = "bestsell">
+        <h4>BEST SELLING PRODUCTS</h4>
+    </div>
+    <div class = "products">
+        <div th:each="product : ${mostViewedProducts}" class = "product">
+            <p>Best selling</p>
+            <p th:text="'Views: '+ ${product.viewCount}"></p>
+            <img th:src="@{'data:image/jpeg;base64,'+${product.image}}" style="width: px; height: 279px;">
+            <h4 th:text="${product.name}"></h4>
+        </div>
+    </div>
+    <div class="line"></div>
 </main>
 <footer>
     <div>
