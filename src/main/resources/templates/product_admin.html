@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Ethno.kg</title>
+  <link rel="stylesheet" type="text/css" href="/css/main.css">
+  <link rel="stylesheet" type="text/css" href="/css/product.css">
+
+</head>
+<body>
+<header th:each="product : ${product}">
+  <div class = "product">
+    <h3 th:text="${product.name}"></h3>
+    <a>
+      <div>
+        <img th:src="@{'data:image/jpeg;base64,'+${product.image}}"/>
+      </div>
+    </a>
+  </div>
+  <section class="description">
+    <p th:text="${product.name}"></p>
+    <p th:text="${product.price}+' KGS'"></p>
+    <p th:text="${product.color}"></p>
+    <a href="/templates/cart.html">Add to cart</a>
+    <button>Add to favorites</button>
+    <a>Buy now</a>
+  </section>
+  <div class="information">
+    <h2 th:text="${product.description}"></h2>
+  </div>
+
+    <div class="crud">
+      <a th:href="'/product/delete/'+${product.id}">delete</a>
+      <a th:href="'/product/update/'+${product.id}">update</a>
+    </div>
+
+</header>
+<footer>
+  <div>
+    <ul>
+      <li>
+        Catalog
+      </li>
+      <li>
+        Production
+      </li>
+      <li>
+        Recommendations for tourists
+      </li>
+      <li>
+        Rent of yurts
+      </li>
+    </ul>
+    <ul>
+      <li><a href="#">Contacts:</a></li>
+      <li><a href="#">+996557951000</a></li>
+      <li><a href="#">email:ethnokg@gmail.com</a></li>
+      <li><a href="#">address: Kyrgyzstan, Bishkek, Asanbay</a></li>
+    </ul>
+    <ul>
+      <li><a>Social media:</a></li>
+      <li><a href="#">Instagram</a></li>
+      <li><a href="#">Facebook</a></li>
+      <li><a href="#">Tiktok</a></li>
+    </ul>
+  </div>
+</footer>
+</main>
+</body>

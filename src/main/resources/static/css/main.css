@@ -1,0 +1,135 @@
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;500;700&display=swap');
+
+body{
+    margin: 0px;
+}
+header {
+    font-family: Poppins;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 5px;
+    background-color: #ffffff;
+  }
+  .logo h1 {
+    margin-left: 80px;
+    color: rgba(76, 130, 81, 1);
+    font-size: 20px;;
+    font-weight: 500;
+  }
+
+  .search form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .search input[type="text"] {
+    padding: 10px;
+    border: solid;
+    border-color:rgba(76, 130, 81, 1) ;
+    border-radius: 5px;
+    width: 500px;
+  }
+
+  .search button {
+    padding: 11px;
+    border: none;
+    background-color: rgba(76, 130, 81, 1);
+    color: #fff;
+    border-radius: 5px;
+    margin-left: 5px;
+    width: 80px;
+  }
+
+  .icons img {
+    height: 33px;
+    margin-left: 10px;
+    margin-right: 40px;
+  }
+
+  .container {
+    margin: 0px;
+    padding: 0 15px;
+    position: relative;
+    height: 100vh;
+    background: url(/img/startbase.png);
+    background-size: 100% 100%;
+  }
+
+  .navigation {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 30px;
+    justify-content: center;
+    padding: 10px 50px;
+    position: inherit;
+    top: 60px;
+    width: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+  }
+
+  .navigation ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+  }
+
+  .navigation li {
+    margin-right: 20px;
+  }
+
+  .navigation a {
+    color: rgba(76, 130, 81, 1);
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 400;
+    font-family: Poppins;
+    text-transform: uppercase;
+    padding: 5px 50px;
+    border-radius: 25px;
+  }
+
+
+  .landing-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff;
+  }
+
+  .landing-text h1 {
+    font-size: 35px;
+    font-family: Poppins;
+    margin: 0;
+    font-weight: 200;
+  }
+
+
+  footer{
+    font-family: Poppins;
+    background-color: rgba(121, 171, 126, 1);
+    width: 100%;
+    margin-top: 200px;
+  }
+  footer div{
+      width: 90%;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      padding: 20px 0;
+  }
+  footer div ul li, footer div ul li a{
+    text-decoration: none;
+    padding: 10px 0;
+    font-size: 20px;
+    color: white;
+  }
+

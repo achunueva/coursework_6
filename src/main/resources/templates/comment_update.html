@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Ethno.kg</title>
+  <link rel="stylesheet" type="text/css" href="/css/main.css">
+  <link rel="stylesheet" type="text/css" href="/css/product.css">
+
+</head>
+<body>
+<header>
+  <div class="logo">
+    <a href="/"><h1>ETHNO.KG</h1></a>
+  </div>
+  <div class="search">
+    <form method="get" action="/search">
+      <input type="text" name="query" placeholder="Search products">
+      <button  type="submit">search</button>
+    </form>
+  </div>
+  <div class="icons">
+    <a href="/order"><img src="/img/box.png" alt="Иконка 1"></a>
+    <a href="/cart"><img src="/img/cart.png" alt="Иконка 2"></a>
+    <img src="/img/user.png" alt="Иконка 3">
+  </div>
+
+  <div  th:each="comment : ${comment}" class="feedback">
+    <h3>FEEDBACK</h3>
+    <div th:each="product : ${product}" >
+      <form method="post" th:action="'/product/'+${product.id}+'/comment/'+${comment.commentId}+'/update'">
+        <fieldset>
+          <legend>ADD FEEDBACK</legend>
+          <label for="name">NAME</label>
+          <input name="name" id="name" th:value="${comment.name}"><br>
+          <input name="product_id" th:value="${product.id}" type="hidden"><br>
+          <label for="text">FEEDBACK</label>
+          <input name="text" th:value="${comment.text}" id="text"  cols="120" rows="3"></input><br>
+        </fieldset>
+        <p><input type="submit" value="UPDATE"></p>
+      </form>
+    </div>
+
+  </div>
+
+</header>
+<footer>
+  <div>
+    <ul>
+      <li>
+        Catalog
+      </li>
+      <li>
+        Production
+      </li>
+      <li>
+        Recommendations for tourists
+      </li>
+      <li>
+        Rent of yurts
+      </li>
+    </ul>
+    <ul>
+      <li><a href="#">Contacts:</a></li>
+      <li><a href="#">+996557951000</a></li>
+      <li><a href="#">email:ethnokg@gmail.com</a></li>
+      <li><a href="#">address: Kyrgyzstan, Bishkek, Asanbay</a></li>
+    </ul>
+    <ul>
+      <li><a>Social media:</a></li>
+      <li><a href="#">Instagram</a></li>
+      <li><a href="#">Facebook</a></li>
+      <li><a href="#">Tiktok</a></li>
+    </ul>
+  </div>
+</footer>
+</main>
+</body>

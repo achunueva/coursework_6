@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin</title>
+  <link rel="stylesheet" type="text/css" href="/css/order.css">
+</head>
+
+<body>
+<H2>UPDATE</H2>
+<div th:each="product :${product}"  class="admin">
+  <form  th:action="'/product/update/'+${product.id}" method="post" action="/admin" class="form">
+    <p>
+      <label for="date">NAME:</label>
+      <input type="text" name="name" th:value="${product.name}" id="date" />
+    </p>
+    <p>
+      <label for="description"><span class="formTextRed"></span> DESCRIPTION:</label>
+      <input type="text" name="description" id="description" th:value="${product.description}"/>
+    </p>
+    <p>
+      <label for="price"><span class="formTextRed"></span> PRICE:</label>
+      <input type="text" name="price" id="price" th:value="${product.price}" />
+    </p>
+    <p>
+      <label for="color">COLOR:</label>
+      <input type="text" name="color" id="color" th:value="${product.color}"/>
+    </p>
+
+    <!--        <input type="file" name="file1"/><br><br>-->
+    <!--        <input type="file" name="file2"/><br><br>-->
+    <!--        <input type="file" name="file3"/><br><br>-->
+    <p class="submit">
+      <input type="submit" value="submit" />
+    </p>
+  </form>
+</div>
+</body>
+</html>

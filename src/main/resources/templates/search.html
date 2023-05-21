@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Ethno.kg</title>
+  <link rel="stylesheet" type="text/css" href="/catalog.css">
+  <link rel="stylesheet" type="text/css" href="/home.css">
+</head>
+<body>
+<header>
+  <div class="logo">
+    <a href="/"><h1>ETHNO.KG</h1></a>  </div>
+  <div class="search">
+    <form method="get" action="/search">
+      <input type="text" name="query" placeholder="Search products">
+      <button  type="submit">search</button>
+    </form>
+  </div>
+  <div class="icons">
+    <img src="/img/box.png" alt="Иконка 1">
+    <img src="/img/cart.png" alt="Иконка 2">
+    <img src="/img/user.png" alt="Иконка 3">
+  </div>
+</header>
+<main>
+  <div class="cards">
+    <div  th:each="result :${results}" class="card">
+      <!-- Верхняя часть -->
+      <div class="card__top">
+        <!-- Изображение-ссылка товара -->
+        <a th:href="'/product/'+ ${result.id}" class="card__image">
+          <img
+                  src=th:src="@{'data:image/jpeg;base64,'+${result.image}}"
+                  alt="Товар"
+          />
+        </a>
+        <a th:href="'/product/'+ ${result.id}" class="card_name"><p th:text="${result.name}" class="card_name"></a>
+      </div>
+    </div>
+  </div>
+</main>
+<footer>
+  <div>
+    <ul>
+      <li>
+        Catalog
+      </li>
+      <li>
+        Production
+      </li>
+      <li>
+        Recommendations for tourists
+      </li>
+      <li>
+        Rent of yurts
+      </li>
+    </ul>
+    <ul>
+      <li><a href="#">Contacts:</a></li>
+      <li><a href="#">+996557951000</a></li>
+      <li><a href="#">email:ethnokg@gmail.com</a></li>
+      <li><a href="#">address: Kyrgyzstan, Bishkek, Asanbay</a></li>
+    </ul>
+    <ul>
+      <li><a>Social media:</a></li>
+      <li><a href="#">Instagram</a></li>
+      <li><a href="#">Facebook</a></li>
+      <li><a href="#">Tiktok</a></li>
+    </ul>
+  </div>
+</footer>
+</body>
+</html>

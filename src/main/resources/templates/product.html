@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Ethno.kg</title>
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/css/product.css">
+
+</head>
+<body>
+<header th:each="product : ${product}">
+    <div class="logo">
+        <a href="/"><h1>ETHNO.KG</h1></a>
+    </div>
+    <div class="search">
+        <form method="get" action="/search">
+            <input type="text" name="query" placeholder="Search products">
+            <button  type="submit">search</button>
+        </form>
+    </div>
+    <div class="icons">
+        <a href="/order"><img src="/img/box.png" alt="Иконка 1"></a>
+        <a href="/cart"><img src="/img/cart.png" alt="Иконка 2"></a>
+        <img src="/img/user.png" alt="Иконка 3">
+    </div>
+    <div class = "product">
+        <h3 th:text="${product.name}"></h3>
+        <a>
+            <div>
+                <img  th:src="@{'data:image/jpeg;base64,'+${product.image}}" height="60px"/><br><br>
+            </div>
+        </a>
+    </div>
+    <section class="description">
+        <p th:text="${product.name}"></p>
+        <p th:text="${product.price}+' KGS'"></p>
+        <p th:text="${product.color}"></p>
+        <a href="/templates/cart.html">Add to favorites</a>
+        <button (click)="addToCart(product.id)">Add to Cart</button>
+        <a>Buy now</a>
+    </section>
+    <div class="information">
+        <h2 th:text="${product.description}"></h2>
+    </div>
+    <div class="feedback">
+        <h3>FEEDBACK</h3>
+        <form method="post" th:action="'/product/'+${product.id}+'/comment'">
+            <fieldset>
+                <legend>ADD FEEDBACK</legend>
+                <label for="name">NAME</label>
+                <input name="name" id="name"><br>
+                <input name="product_id" th:value="${product.id}" type="hidden"><br>
+                <label for="text">FEEDBACK</label>
+                <textarea name="text" id="text"  cols="120" rows="2"></textarea><br>
+            </fieldset>
+            <p><input type="submit" value="Add feedback"></p>
+        </form>
+    </div>
+    <div th:each="comment : ${comment}" class="comment">
+        <h4 th:text="${comment.name}"></h4>
+        <h5 th:text="${comment.text}"></h5>
+        <div class="crud">
+            <a th:href="'/product/'+${product.id}+'/comment/'+${comment.commentId}+'/delete'">DELETE</a>
+
+            <a th:href="'/product/'+${product.id}+'/comment/'+${comment.commentId}+'/update'">UPDATE</a>
+        </div>
+    </div>
+</header>
+<footer>
+    <div>
+        <ul>
+            <li>
+                Catalog
+            </li>
+            <li>
+                Production
+            </li>
+            <li>
+                Recommendations for tourists
+            </li>
+            <li>
+                Rent of yurts
+            </li>
+        </ul>
+        <ul>
+            <li><a href="#">Contacts:</a></li>
+            <li><a href="#">+996557951000</a></li>
+            <li><a href="#">email:ethnokg@gmail.com</a></li>
+            <li><a href="#">address: Kyrgyzstan, Bishkek, Asanbay</a></li>
+        </ul>
+        <ul>
+            <li><a>Social media:</a></li>
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">Facebook</a></li>
+            <li><a href="#">Tiktok</a></li>
+        </ul>
+    </div>
+</footer>
+</main>
+</body>
