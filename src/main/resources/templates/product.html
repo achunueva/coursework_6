@@ -36,7 +36,15 @@
         <p th:text="${product.price}+' KGS'"></p>
         <p th:text="${product.color}"></p>
         <a href="/templates/cart.html">Add to favorites</a>
-        <button (click)="addToCart(product.id)">Add to Cart</button>
+        <form method="post" th:action="'/product/'+${product.id}+'/cart'" enctype="multipart/form-data">
+                <input name="product_id" th:value="${product.id}" type="hidden"><br>
+                <input name="cartName" th:value="${product.name}" type="hidden"><br>
+                <input name="cartDescription" th:value="${product.description}" type="hidden"><br>
+                <input name="cartColor" th:value="${product.color}" type="hidden"><br>
+                <input name="cartPrice" th:value="${product.price}" type="hidden"><br>
+                <input type="hidden" name="file1" th:value="@{'data:image/jpeg;base64,'+${product.image}}" />
+            <p><input type="submit" value="Add to Cart"></p>
+        </form>
         <a href="/order">Buy now</a>
     </section>
     <div class="information">

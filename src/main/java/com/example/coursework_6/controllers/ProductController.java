@@ -1,10 +1,13 @@
 package com.example.coursework_6.controllers;
 
 
+import com.example.coursework_6.models.Cart;
 import com.example.coursework_6.models.Comment;
 import com.example.coursework_6.models.Product;
+import com.example.coursework_6.repositories.CartRepository;
 import com.example.coursework_6.repositories.CommentRepository;
 import com.example.coursework_6.repositories.ProductRepository;
+import com.example.coursework_6.services.CartService;
 import com.example.coursework_6.services.ProductService;
 import jakarta.transaction.Transactional;
 import org.springframework.aot.generate.GeneratedTypeReference;
@@ -12,7 +15,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -28,6 +34,10 @@ public class ProductController {
 
     @Autowired
     private ProductService productService;
+    @Autowired
+    private CartService cartService;
+    @Autowired
+    private CartRepository cartRepository;
 
 
     @GetMapping("/catalog")
@@ -38,6 +48,40 @@ public class ProductController {
         List<Product> product = productRepository.findAll();
         model.addAttribute("product", product);
         return "catalog";
+    }
+
+
+    @GetMapping("/cart")
+    public String cart(Model model){
+        Iterable<Cart> cart = cartRepository.findAll();
+        model.addAttribute("cart", cart);
+        return "cart";
+    }
+
+
+
+
+
+//    @PostMapping("/product/{id}/cart")
+//    public String addCart(@RequestParam String cartName,
+//                          @RequestParam("file1") MultipartFile file1,
+//                          @RequestParam String cartDescription,
+//                          @RequestParam String cartColor,
+//                          @RequestParam int cartPrice) throws IOException{
+//        File file = new File(String.valueOf(file1));
+//        cartService.saveCartToDB(file1, cartName, cartDescription, cartColor, cartPrice);
+//        return ("redirect:/cart");
+//    }
+
+    @PostMapping("/product/{id}/cart")
+    public String createCart(@PathVariable("id") Long id, @ModelAttribute("newComment") Cart cart) {
+        Product product = productRepository.findById(id).orElse(null);
+        if (product != null) {
+            cart.setProduct(product);
+            cartRepository.save(cart);
+        }
+
+        return "redirect:/catalog/{id}";
     }
 
     @GetMapping("/catalog/{id}")
@@ -88,6 +132,7 @@ public class ProductController {
     }
 
 
+
     @GetMapping("/product/update/{id}")
     public String productEdit(@PathVariable(value = "id") long id, Model model) {
         Optional<Product> product = productRepository.findById(id);
@@ -136,5 +181,17 @@ public class ProductController {
         // Redirect the user back to the product page or display a success message
         return  "redirect:/catalog/{id}";
     }
+
+
+
+    @GetMapping("/cart/delete/{id}")
+    public String deleteCart(@PathVariable("id") Integer cartId){
+        cartRepository.deleteById(cartId);
+        return "redirect:/cart";
+    }
+
+
+
+
 
 }

@@ -35,9 +35,9 @@
           <img th:src="@{'data:image/jpeg;base64,'+${product.image}}"/>
         </a>
         <a class="card_name" th:text="${product.name}"></a>
-        <a th:href="'/product/delete/'+${product.id}">delete</a>
-        <a th:href="'/product/update/'+${product.id}">update</a>
       </div>
+      <a th:href="'/product/delete/'+${product.id}">delete</a>
+      <a th:href="'/product/update/'+${product.id}">update</a>
     </div>
   </div>
 </main>

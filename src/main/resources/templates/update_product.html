@@ -11,7 +11,7 @@
 <body>
 <H2>UPDATE</H2>
 <div th:each="product :${product}"  class="admin">
-  <form  th:action="'/product/update/'+${product.id}" method="post" action="/admin" class="form">
+  <form  th:action="'/product/update/'+${product.id}" method="post" action="/admin" enctype="multipart/form-data" class="form">
     <p>
       <label for="date">NAME:</label>
       <input type="text" name="name" th:value="${product.name}" id="date" />
@@ -29,8 +29,8 @@
       <input type="text" name="color" id="color" th:value="${product.color}"/>
     </p>
     <p>
-      <label for="file">SELECT FILE:</label>
-      <input type="file" name="color" id="file" th:value="@{'data:image/jpeg;base64,'+${product.image}}"/>
+      <label for="newFile">SELECT FILE:</label>
+      <input type="file" name="file" th:value="@{'data:image/jpeg;base64,'+${product.image}}" id="newFile">
     </p>
 
     <!--        <input type="file" name="file1"/><br><br>-->
