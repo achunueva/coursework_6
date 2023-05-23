@@ -1,7 +1,6 @@
 package com.example.coursework_6.models;
 
 import jakarta.persistence.*;
-import lombok.Data;
 
 @Entity
 @Table(name = "comment")
@@ -10,7 +9,6 @@ public class Comment {
     @Id
     private Long commentId;
     private String name, text;
-
     @ManyToOne
     @JoinColumn(name = "product_id", nullable = false)
     private Product product;
@@ -18,7 +16,6 @@ public class Comment {
     public Long getCommentId() {
         return commentId;
     }
-
     public Comment() {
     }
 

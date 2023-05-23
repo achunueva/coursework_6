@@ -154,3 +154,23 @@ footer div ul li, footer div ul li a{
   font-size: 20px;
   color: white;
 }
+
+.div ee{
+    align-items: center;
+    margin-top: 20px;}
+.ee{
+font-family: Poppins;
+  background-color: rgba(121, 171, 126, 1); /* Set the background color */
+  background-size: cover; /* Adjust the background image size to cover the div */
+  background-position: center center; /* Position the background image in the center */
+    width: auto;
+    background: rgba(121, 171, 126, 1);
+    color: #FFF;
+    padding: 9px 15px;
+    border: 0;
+    font-size: 14px;
+    cursor: pointer;
+    align-items: center;
+    margin-top: 20px;
+
+}

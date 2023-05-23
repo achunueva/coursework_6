@@ -3,6 +3,8 @@
 <head>
   <title>Ethno.kg</title>
   <link rel="stylesheet" type="text/css" href="/css/catalog.css">
+  <link rel="stylesheet" type="text/css" href="/css/order.css">
+
 </head>
 <body>
 <header>
@@ -23,10 +25,13 @@
 </header>
 <main>
   <div class = "start">
-    <h3>CATALOG</h3>
+    <h3>CATALOG (editing products)</h3>
   </div>
-  <a href="/admin">Add products</a>
-  <div class="cards">
+  <div class="ee"><a class="ee" href="/admin">Add products</a><a class="ee" href="/admin/orders">See orders</a></div>
+
+
+
+    <div class="cards">
     <div th:each="product : ${product}" class="card">
       <!-- Верхняя часть -->
       <div class="card__top">

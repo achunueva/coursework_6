@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Ethno.kg</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order page</title>
+    <link rel="stylesheet" type="text/css" href="/css/order.css">
     <link rel="stylesheet" type="text/css" href="/css/catalog.css">
     <link rel="stylesheet" type="text/css" href="/css/main.css">
     <link rel="stylesheet" type="text/css" href="/css/home.css">
+    <link rel="stylesheet" type="text/css" href="/css/adittionals.css">
 </head>
-<body>
 <header>
     <div class="logo">
         <a href="/"><h1>ETHNO.KG</h1></a>
@@ -23,37 +27,28 @@
         <img src="/img/user.png" alt="Иконка 3">
     </div>
 </header>
-<main>
-    <div class = "start">
-        <h3>CATALOG</h3>
+<body >
+<div class="ee"><a class="ee" href="/admin">Add products</a><a class="ee" href="/admin/ud">Edit products</a></div>
+
+<h2>ALL ORDERS</h2>
+
+
+
+
+<div th:each="orders : ${orders}" class="cards8">
+    <p th:text="'Order # '+${orders.orderId}" ></p>
+    <p th:text="'Name: '+${orders.customerName}"></p>
+    <p><a class="card_name" th:text="'Address: '+${orders.address}"></a></p>
+    <p class="cards8">Chosen items:</p>
+    <div class = "cards8" th:each="fav : ${fav}">
+        <p class="cards8" th:text="'name: '+${fav.favName}"></p>
+        <p  th:text="'quantity: '+${fav.quantity}"></p>
     </div>
-    <div class="cards">
-        <div th:each="product : ${product}" class="card">
-            <div class="card__top">
-                <!-- Изображение-ссылка товара -->
-                <a th:href="'/catalog/'+${product.id}" class="card__image">
-                    <img
-                            th:src="@{'data:image/jpeg;base64,'+${product.image}}"
-                            alt="Товар"
-                    />
-                </a>
-                <a class="card_name" th:text="${product.name}"></a>
-            </div>
-        </div>
+    <div class="crud1" >
+        <a class="crud1" th:href="'/order/delete/'+${orders.orderId}">DELETE</a>
     </div>
-    <div class="line"></div>
-    <div class = "bestsell">
-        <h4>BEST SELLING PRODUCTS</h4>
-    </div>
-    <div class="popular">
-        <div th:each="product : ${mostViewedProducts}" class="pop">
-            <h4 th:text="${product.name}"></h4>
-            <p th:text="'Views: '+ ${product.viewCount}"></p>
-            <img th:src="@{'data:image/jpeg;base64,'+${product.image}}" style="width: px; height: 279px;">
-        </div>
-    </div>
-    <div class="line"></div>
-</main>
+</div>
+
 <footer>
     <div>
         <ul>
@@ -86,5 +81,3 @@
 </footer>
 </body>
 </html>
-
-

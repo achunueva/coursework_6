@@ -24,6 +24,8 @@
         <img src="/img/user.png" alt="Иконка 3">
     </div>
     <div class = "product">
+        <div class="ee"><a class="ee" href="/catalog">Back</a></div>
+
         <h3 th:text="${product.name}"></h3>
         <a>
             <div>
@@ -32,18 +34,16 @@
         </a>
     </div>
     <section class="description">
-        <p th:text="${product.name}"></p>
-        <p th:text="${product.price}+' KGS'"></p>
-        <p th:text="${product.color}"></p>
-        <a href="/templates/cart.html">Add to favorites</a>
+        <p th:text="'name: '+${product.name}"></p>
+        <p th:text="'price: '+${product.price}+' KGS'"></p>
+        <p th:text="'details: '+${product.color}"></p>
         <form method="post" th:action="'/product/'+${product.id}+'/cart'" enctype="multipart/form-data">
                 <input name="product_id" th:value="${product.id}" type="hidden"><br>
                 <input name="cartName" th:value="${product.name}" type="hidden"><br>
                 <input name="cartDescription" th:value="${product.description}" type="hidden"><br>
                 <input name="cartColor" th:value="${product.color}" type="hidden"><br>
                 <input name="cartPrice" th:value="${product.price}" type="hidden"><br>
-                <input type="hidden" name="file1" th:value="@{'data:image/jpeg;base64,'+${product.image}}" />
-            <p><input type="submit" value="Add to Cart"></p>
+            <a><input type="submit" value="Add to Favorites"></a>
         </form>
         <a href="/order">Buy now</a>
     </section>

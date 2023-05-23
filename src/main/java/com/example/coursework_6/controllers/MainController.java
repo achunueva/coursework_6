@@ -41,38 +41,17 @@ public class MainController {
     }
     @GetMapping("/admin")
     public String admin(Model model){
-
         return "admin";
     }
-
-    @GetMapping("/order")
-    public String order(Model model){
-
-        return "order";
-    }
-    @GetMapping("/search")
-    @Transactional
-    public String search(@RequestParam("query") String query, Model model) {
-        List<Product> mostViewedProducts = productRepository.findMostViewedProducts();
-        model.addAttribute("mostViewedProducts", mostViewedProducts);
-        List<Product> product = productRepository.searchProducts(query);
-        model.addAttribute("product", product);
-        return "catalog";
-    }
-
-
-
-
     @PostMapping("/admin")
-    public String addFood(@RequestParam String name,
+    public String addProduct(@RequestParam String name,
                           @RequestParam MultipartFile file,
                           @RequestParam String description,
                           @RequestParam String color,
                           @RequestParam int price){
         productService.saveProductToDB(file, name, description, color, price);
-        return ("redirect:/admin");
+        return ("redirect:/catalog");
     }
-
     @GetMapping("/admin/ud")
     public String deleteProduct(Model model){
         List<Product> product = productRepository.findAll();
@@ -87,5 +66,16 @@ public class MainController {
         product.ifPresent(res::add);
         model.addAttribute("product", res);
         return "product_admin";
+    }
+
+
+    @GetMapping("/search")
+    @Transactional
+    public String search(@RequestParam("query") String query, Model model) {
+        List<Product> mostViewedProducts = productRepository.findMostViewedProducts();
+        model.addAttribute("mostViewedProducts", mostViewedProducts);
+        List<Product> product = productRepository.searchProducts(query);
+        model.addAttribute("product", product);
+        return "catalog";
     }
 }

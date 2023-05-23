@@ -20,15 +20,14 @@ public class Product {
     private int price;
     @Column
     private Integer viewCount;
-
-
     @OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE)
     private List<Comment> comments;
-
     @Lob
     @Column(length = 16777215)
     private String image;
 
+    @OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE)
+    private List<Cart> cart;
     public String getImage() {
         return image;
     }

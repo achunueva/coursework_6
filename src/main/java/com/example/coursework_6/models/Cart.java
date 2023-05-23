@@ -17,17 +17,8 @@ public class Cart {
     private String cartColor;
     private int cartPrice;
 
-    @Lob
-    @Column(length = 16777215)
-    private String cartImage;
 
-    public String getCartImage() {
-        return cartImage;
-    }
 
-    public void setCartImage(String image) {
-        this.cartImage = cartImage;
-    }
 
 
     public Cart() {
@@ -75,7 +66,7 @@ public class Cart {
     }
 
     @OneToOne
-    @JoinColumn(name = "product_id", nullable = false)
+    @JoinColumn(name = "product_id")
     private Product product;
 
     public Cart(Product product) {
